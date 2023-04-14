@@ -7,8 +7,14 @@ import collections
 class CaesarCipher(Cipher.Cipher):
     MOST_COMMON_LETTER = "e"
 
-    def __init__(self, shift: int):
+    def __init__(self, shift: int = 0):
         self.__shift = shift
+
+    def set_key(self, shift: int):
+        self.__shift = shift
+
+    def get_key(self) -> int:
+        return self.__shift
 
     def _get_shift_sequence(self) -> Iterable[int]:
         return itertools.repeat(self.__shift)
