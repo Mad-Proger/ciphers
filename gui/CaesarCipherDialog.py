@@ -4,12 +4,13 @@ from ciphers import CaesarCipher
 
 
 class CaesarCipherDialog(QtWidgets.QWidget):
-    def __init__(self, cipher: CaesarCipher.CaesarCipher, exit_callback: Callable[[], None]):
+    def __init__(self, cipher: CaesarCipher.CaesarCipher,
+                 exit_callback: Callable[[QtWidgets.QWidget], None]):
         super().__init__()
         uic.loadUi("gui/layouts/CaesarCipherDialog.ui", self)
         self.__cipher = cipher
         self.__setup_buttons()
-        self.back_button.clicked.connect(exit_callback)
+        self.back_button.clicked.connect(lambda: exit_callback(self))
 
     def __setup_buttons(self):
         self.encrypt_button.clicked.connect(self.__encrypt)

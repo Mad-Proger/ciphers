@@ -5,12 +5,12 @@ from ciphers import StringKeyCipher
 
 class StringCipherDialog(QtWidgets.QWidget):
     def __init__(self, cipher: StringKeyCipher.StringKeyCipher,
-                 exit_callback: Callable[[], None], cipher_name: str):
+                 exit_callback: Callable[[QtWidgets.QWidget], None], cipher_name: str):
         super().__init__()
         uic.loadUi("gui/layouts/StringCipherDialog.ui", self)
         self.__cipher = cipher
         self.__setup_buttons()
-        self.back_button.clicked.connect(exit_callback)
+        self.back_button.clicked.connect(lambda: exit_callback(self))
         self.cipher_label.setText(cipher_name)
 
     def __setup_buttons(self):
