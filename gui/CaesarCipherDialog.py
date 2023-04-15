@@ -35,6 +35,8 @@ class CaesarCipherDialog(QtWidgets.QWidget):
 
     def __crack(self):
         ciphertext = self.ciphertext_field.toPlainText()
+        if not ciphertext:
+            return
         self.__cipher = CaesarCipher.CaesarCipher.get_text_decoder(ciphertext)
         self.shift_spin_box.setValue(self.__cipher.get_key())
 
