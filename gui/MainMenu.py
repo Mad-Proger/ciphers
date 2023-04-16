@@ -1,6 +1,6 @@
 from typing import Callable
 from PyQt5 import QtWidgets, uic
-from gui import CaesarCipherDialog, StringCipherDialog
+from gui import CaesarCipherDialog, StringCipherDialog, BMPDialog
 from ciphers import CaesarCipher, VernamCipher, VigenereCipher
 
 
@@ -35,7 +35,8 @@ class MainMenu(QtWidgets.QMainWindow):
         self.__switch_widget(cipher_widget)
 
     def __bmp(self):
-        pass
+        bmp_widget = BMPDialog.BMPDialog(self.__get_callback())
+        self.__switch_widget(bmp_widget)
 
     def __get_callback(self) -> Callable[[QtWidgets.QWidget], None]:
         def callback(widget: QtWidgets.QWidget):
